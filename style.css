@@ -159,3 +159,29 @@ svg{flex:none}
 .logo-light .logo-mark path[fill="#0e527c"]{fill:#fff}
 .logo b,.btn{white-space:nowrap}
 @media (max-width:600px){.top-cta .btn-sm{display:none}.logo b{font-size:1.05rem}}
+
+/* Formulaire façon Typeform */
+.tf{position:relative;gap:0;min-height:430px;align-content:start}
+.tf-head{margin-bottom:1.1rem}
+.tf-progress{height:6px;border-radius:99px;background:var(--sky-l);margin:.8rem 0 .45rem;overflow:hidden}
+.tf-progress span{display:block;height:100%;width:25%;background:var(--brick);border-radius:99px;transition:width .35s ease}
+.tf-count{font-size:.8rem;color:var(--mute)}
+.tf-step{border:0;display:grid;gap:.8rem;margin-bottom:1.2rem}
+.tf-step legend{font:700 1.25rem/1.25 Archivo,sans-serif;color:var(--ink);margin-bottom:.9rem;padding:0}
+.tf-choices{display:grid;gap:.55rem}
+.tf-choice{position:relative;cursor:pointer;font-weight:500!important}
+.tf-choice input{position:absolute;opacity:0;pointer-events:none}
+.tf-choice span{display:flex;align-items:center;gap:.75rem;padding:.75rem .9rem;border:1.5px solid var(--line);border-radius:10px;background:#fafcfd;font-size:.97rem;transition:border-color .15s,background .15s,transform .15s}
+.tf-choice b{display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:6px;border:1.5px solid var(--sky);color:var(--navy);font-size:.78rem}
+.tf-choice:hover span{border-color:var(--navy);background:#fff}
+.tf-choice input:checked+span{border-color:var(--navy);background:var(--sky-l);transform:scale(.99)}
+.tf-choice input:checked+span b{background:var(--navy);border-color:var(--navy);color:#fff}
+.tf-choice input:focus-visible+span{outline:2px solid var(--navy);outline-offset:2px}
+.tf-next{justify-self:start}
+.tf-back{background:none;border:0;color:var(--mute);font:500 .88rem Inter,sans-serif;cursor:pointer;justify-self:start;padding:.2rem 0}
+.tf-back:hover{color:var(--navy)}
+.tf.tf-on .tf-step{display:none}
+.tf.tf-on .tf-step.is-active{display:grid;animation:tfIn .35s ease}
+.tf:not(.tf-on) .tf-progress,.tf:not(.tf-on) .tf-count{display:none}
+@keyframes tfIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.tf.tf-on .tf-step.is-active{animation:none}}

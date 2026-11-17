@@ -45,21 +45,37 @@
       </div>
       <ul class="reas"><li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg><span>Devis gratuit et sans engagement</span></li><li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Entreprise de maçonnerie depuis 1984</span></li><li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>Garantie décennale SMABTP</span></li><li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Qualifiée Qualibat RGE</span></li></ul>
     </div>
-    <form id="devisForm" class="card form" method="POST" action="contact.php">
-  <h2 id="devis">Demandez votre devis gratuit</h2>
-  <p class="form-lead">Réponse rapide par téléphone ou par e-mail.</p>
+    <form id="devisForm" class="card form tf" method="POST" action="contact.php">
+  <div class="tf-head">
+    <h2 id="devis">Votre devis gratuit</h2>
+    <div class="tf-progress" aria-hidden="true"><span></span></div>
+    <p class="tf-count">Étape <b>1</b> sur 4 · moins d'une minute</p>
+  </div>
   <input type="hidden" name="Source" value="Rénovation">
   <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
-  <label>Nom et prénom<input name="Nom" required autocomplete="name"></label>
-  <div class="row2">
+  <fieldset class="tf-step is-active">
+    <legend>Quel est votre projet ?</legend>
+    <div class="tf-choices"><label class="tf-choice"><input type="radio" name="Besoin" value="Rénovation de maison" required><span><b>A</b>Rénovation de maison</span></label><label class="tf-choice"><input type="radio" name="Besoin" value="Escalier" required><span><b>B</b>Escalier</span></label><label class="tf-choice"><input type="radio" name="Besoin" value="Démolition" required><span><b>C</b>Démolition</span></label><label class="tf-choice"><input type="radio" name="Besoin" value="Carrelage" required><span><b>D</b>Carrelage</span></label><label class="tf-choice"><input type="radio" name="Besoin" value="Rénovation de bâtiment" required><span><b>E</b>Rénovation de bâtiment</span></label><label class="tf-choice"><input type="radio" name="Besoin" value="Autre" required><span><b>F</b>Autre</span></label></div>
+  </fieldset>
+  <fieldset class="tf-step">
+    <legend>Quand souhaitez-vous démarrer ?</legend>
+    <div class="tf-choices"><label class="tf-choice"><input type="radio" name="Délai" value="Dès que possible" required><span><b>A</b>Dès que possible</span></label><label class="tf-choice"><input type="radio" name="Délai" value="Dans les 3 mois" required><span><b>B</b>Dans les 3 mois</span></label><label class="tf-choice"><input type="radio" name="Délai" value="Dans l&#x27;année" required><span><b>C</b>Dans l&#x27;année</span></label><label class="tf-choice"><input type="radio" name="Délai" value="Je me renseigne" required><span><b>D</b>Je me renseigne</span></label></div>
+  </fieldset>
+  <fieldset class="tf-step">
+    <legend>Où se situent les travaux ?</legend>
+    <label>Commune<input name="Localité" required autocomplete="address-level2" placeholder="Ex. Bogny-sur-Meuse"></label>
+    <label><span>Quelques détails <span class="opt">(facultatif)</span></span><textarea name="Message" rows="3" placeholder="Surface, état actuel, plans existants…"></textarea></label>
+    <button type="button" class="btn tf-next">Suivant <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </fieldset>
+  <fieldset class="tf-step">
+    <legend>À qui envoyer le devis ?</legend>
+    <label>Nom et prénom<input name="Nom" required autocomplete="name"></label>
     <label>Téléphone<input name="Téléphone" type="tel" required autocomplete="tel"></label>
-    <label>Commune<input name="Localité" required autocomplete="address-level2"></label>
-  </div>
-  <label>E-mail<input name="Email" type="email" required autocomplete="email"></label>
-  <label>Votre projet<select name="Besoin" required><option value="">Choisir…</option><option>Rénovation de maison</option><option>Escalier</option><option>Démolition</option><option>Carrelage</option><option>Rénovation de bâtiment</option><option>Autre</option></select></label>
-  <label><span>Message <span class="opt">(facultatif)</span></span><textarea name="Message" rows="3" placeholder="Type de travaux, surface, délai souhaité…"></textarea></label>
-  <button class="btn btn-full" type="submit" data-sending="Envoi…">Recevoir mon devis gratuit <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-  <p class="privacy">Vos coordonnées servent uniquement à répondre à votre demande.</p>
+    <label>E-mail<input name="Email" type="email" required autocomplete="email"></label>
+    <button class="btn btn-full" type="submit" data-sending="Envoi…">Recevoir mon devis gratuit <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <p class="privacy">Vos coordonnées servent uniquement à répondre à votre demande.</p>
+  </fieldset>
+  <button type="button" class="tf-back" hidden>← Retour</button>
 </form>
   </div>
 </section>

@@ -247,23 +247,48 @@ def header():
 </header>
 """
 
+DELAIS = ["Dès que possible", "Dans les 3 mois", "Dans l'année", "Je me renseigne"]
+
+def choices(name, values):
+    return "".join(f'<label class="tf-choice"><input type="radio" name="{name}" value="{E(v)}" required><span><b>{chr(65 + i)}</b>{E(v)}</span></label>'
+                   for i, v in enumerate(values))
+
 def form(p):
-    opts = "".join(f'<option>{E(b)}</option>' for b in p["besoin"])
-    return f"""<form id="devisForm" class="card form" method="POST" action="{FORM_ACTION}">
-  <h2 id="devis">Demandez votre devis gratuit</h2>
-  <p class="form-lead">Réponse rapide par téléphone ou par e-mail.</p>
+    """Formulaire multi-étapes façon Typeform, en HTML classique (POST vers contact.php, aucun service tiers).
+    Sans JavaScript, toutes les questions s'affichent d'un bloc. Le dernier bouton est un vrai submit : le
+    déclencheur GTM « Envoi de formulaire » fonctionne normalement."""
+    nxt = f'<button type="button" class="btn tf-next">Suivant {I["ARROW"]}</button>'
+    return f"""<form id="devisForm" class="card form tf" method="POST" action="{FORM_ACTION}">
+  <div class="tf-head">
+    <h2 id="devis">Votre devis gratuit</h2>
+    <div class="tf-progress" aria-hidden="true"><span></span></div>
+    <p class="tf-count">Étape <b>1</b> sur 4 · moins d'une minute</p>
+  </div>
   <input type="hidden" name="Source" value="{E(p['lp'])}">
   <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
-  <label>Nom et prénom<input name="Nom" required autocomplete="name"></label>
-  <div class="row2">
+  <fieldset class="tf-step is-active">
+    <legend>Quel est votre projet ?</legend>
+    <div class="tf-choices">{choices("Besoin", p["besoin"])}</div>
+  </fieldset>
+  <fieldset class="tf-step">
+    <legend>Quand souhaitez-vous démarrer ?</legend>
+    <div class="tf-choices">{choices("Délai", DELAIS)}</div>
+  </fieldset>
+  <fieldset class="tf-step">
+    <legend>Où se situent les travaux ?</legend>
+    <label>Commune<input name="Localité" required autocomplete="address-level2" placeholder="Ex. Bogny-sur-Meuse"></label>
+    <label><span>Quelques détails <span class="opt">(facultatif)</span></span><textarea name="Message" rows="3" placeholder="Surface, état actuel, plans existants…"></textarea></label>
+    {nxt}
+  </fieldset>
+  <fieldset class="tf-step">
+    <legend>À qui envoyer le devis ?</legend>
+    <label>Nom et prénom<input name="Nom" required autocomplete="name"></label>
     <label>Téléphone<input name="Téléphone" type="tel" required autocomplete="tel"></label>
-    <label>Commune<input name="Localité" required autocomplete="address-level2"></label>
-  </div>
-  <label>E-mail<input name="Email" type="email" required autocomplete="email"></label>
-  <label>Votre projet<select name="Besoin" required><option value="">Choisir…</option>{opts}</select></label>
-  <label><span>Message <span class="opt">(facultatif)</span></span><textarea name="Message" rows="3" placeholder="Type de travaux, surface, délai souhaité…"></textarea></label>
-  <button class="btn btn-full" type="submit" data-sending="Envoi…">Recevoir mon devis gratuit {I['ARROW']}</button>
-  <p class="privacy">Vos coordonnées servent uniquement à répondre à votre demande.</p>
+    <label>E-mail<input name="Email" type="email" required autocomplete="email"></label>
+    <button class="btn btn-full" type="submit" data-sending="Envoi…">Recevoir mon devis gratuit {I['ARROW']}</button>
+    <p class="privacy">Vos coordonnées servent uniquement à répondre à votre demande.</p>
+  </fieldset>
+  <button type="button" class="tf-back" hidden>← Retour</button>
 </form>"""
 
 def hero(p):
