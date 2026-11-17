@@ -18,7 +18,7 @@ EMAIL = "vallogia@orange.fr"                  # trouvé sur HelloWatt : à confi
 ADDRESS_STREET, ADDRESS_CP, ADDRESS_CITY = "Rue des Cerisiers", "08120", "Bogny-sur-Meuse"
 INSURER = "SMABTP"
 # Qualibat / RGE affichés sur l'ancien site (2018) : à revérifier sur qualibat.com avant d'activer.
-QUALIBAT_RGE = False
+QUALIBAT_RGE = True
 FORM_ACTION = "contact.php"
 YEAR = datetime.date.today().year
 TODAY = datetime.date.today().isoformat()
