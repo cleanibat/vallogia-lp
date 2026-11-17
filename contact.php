@@ -3,7 +3,7 @@
 header('Content-Type: application/json');
 date_default_timezone_set('Europe/Paris');
 
-$DEST     = 'contact@vallogia.fr';                            // destinataire visible : le client
+$DEST     = 'vallogia@orange.fr';                            // destinataire visible : le client
 $BCC      = 'aymeric@cleanibat.fr';                         // Aymeric toujours en copie CACHÉE, jamais en destinataire visible
 $FROM     = 'Vallogia Fils <no-reply@cleanibat.fr>';               // domaine avec SPF+DKIM valides, sinon Gmail supprime en silence
 $SUBJECT  = 'Nouveau devis Vallogia Fils - ';
